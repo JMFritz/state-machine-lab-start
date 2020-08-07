@@ -1,1 +1,7 @@
-{}
+{
+  "Input": {
+    "firstName": "John",
+    "lastName": "Smith",
+    "teamName": "Product"
+  }
+}
