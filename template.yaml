@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Resources:
+
+  TeamProjects:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub teamprojects-${AWS::AccountId}
+
+  TeamMembersTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: memberId
+        Type: String
+
+  CreateFolderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CreateFolderFunction
+      Description: Creates a new folder in our team S3 bucket
+      CodeUri: functions/CreateFolderFunction
+      Handler: app.handler
+      Runtime: nodejs12.x
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref TeamProjects
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref TeamProjects
+          BUCKET_ARN: !GetAtt TeamProjects.Arn
