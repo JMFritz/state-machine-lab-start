@@ -23,7 +23,7 @@ Resources:
       Handler: app.handler
       Runtime: nodejs12.x
       Policies:
-        - S3CrudPolicy:
+        - S3WritePolicy:
             BucketName: !Ref TeamProjects
       Environment:
         Variables:
