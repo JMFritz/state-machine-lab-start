@@ -28,4 +28,3 @@ Resources:
       Environment:
         Variables:
           BUCKET_NAME: !Ref TeamProjects
-          BUCKET_ARN: !GetAtt TeamProjects.Arn
